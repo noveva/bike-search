@@ -1,33 +1,31 @@
-<section>
+<section class="w-fit max-w-full mx-auto">
   @if (loading === false) {
     <app-view-header [text]="bike.title"></app-view-header>
     <article>
-      @if (bike.large_img) {
-        <img
-          [src]="bike.large_img"
-          [alt]="bike.title"
-          [class]="{
-            'h-80': true,
-            'w-auto': true,
-            'object-contain': true
-          }" />
-      }
-      <dl>
-        <app-bike-data-item label="Status">{{
-          bike.status
-        }}</app-bike-data-item>
-        <app-bike-data-item label="Serial">{{
-          bike.serial
-        }}</app-bike-data-item>
-        <app-bike-data-item label="Manufacturer">{{
-          bike.manufacturer_name
-        }}</app-bike-data-item>
-        <app-bike-data-item label="Colors">
-          @for (color of bike.frame_colors; track color) {
-            {{ color }}
-          }
-        </app-bike-data-item>
-      </dl>
+      <div class="md:inline-flex">
+        @if (bike.large_img) {
+          <img
+            [src]="bike.large_img"
+            [alt]="bike.title"
+            class="w-auto md:h-80 object-contain mb-4" />
+        }
+        <dl [class]="bike.large_img ? 'md:pl-4' : ''">
+          <app-bike-data-item label="Status">{{
+            bike.status
+          }}</app-bike-data-item>
+          <app-bike-data-item label="Serial">{{
+            bike.serial
+          }}</app-bike-data-item>
+          <app-bike-data-item label="Manufacturer">{{
+            bike.manufacturer_name
+          }}</app-bike-data-item>
+          <app-bike-data-item label="Colors">
+            @for (color of bike.frame_colors; track color) {
+              {{ color }}
+            }
+          </app-bike-data-item>
+        </dl>
+      </div>
       @if (bike.description) {
         <h2 class="mt-4 mb-2 text-2xl">Description</h2>
         <p>
