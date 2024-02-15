@@ -22,4 +22,12 @@ export class BikesService {
       }>(`https://bikeindex.org/api/v3/search`, options)
       .pipe(map(response => response.bikes));
   }
+
+  getBike(id: number): Observable<Bike> {
+    return this.http
+      .get<{
+        bike: Bike;
+      }>(`https://bikeindex.org/api/v3/bikes/${id}`)
+      .pipe(map(response => response.bike));
+  }
 }

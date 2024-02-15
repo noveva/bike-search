@@ -1,0 +1,49 @@
+<section class="w-fit max-w-full mx-auto">
+  @if (loading === false) {
+    <button class="hover:text-primary focus:text-primary/50" (click)="goBack()">
+      <span class="text-md">&#9664;</span>
+      &nbsp;
+      <span class="text-xl">Back to bikes</span>
+    </button>
+    @if (bike) {
+      <app-view-header [text]="bike.title"></app-view-header>
+      <article>
+        <div class="md:inline-flex">
+          @if (bike.large_img) {
+            <img
+              class="w-auto md:h-80 object-contain mb-4"
+              [src]="bike.large_img"
+              [alt]="bike.title" />
+          }
+          <dl [class]="bike.large_img ? 'md:pl-4' : ''">
+            <app-bike-data-item label="Status">{{
+              bike.status
+            }}</app-bike-data-item>
+            <app-bike-data-item label="Serial">{{
+              bike.serial
+            }}</app-bike-data-item>
+            <app-bike-data-item label="Manufacturer">{{
+              bike.manufacturer_name
+            }}</app-bike-data-item>
+            <app-bike-data-item label="Colors">
+              @for (color of bike.frame_colors; track color) {
+                {{ color }}
+              }
+            </app-bike-data-item>
+          </dl>
+        </div>
+        @if (bike.description) {
+          <h2 class="mt-4 mb-2 text-2xl">Description</h2>
+          <p>
+            {{ bike.description }}
+          </p>
+        }
+      </article>
+    } @else {
+      <p class="mt-4">Bike not loaded</p>
+    }
+  }
+  @if (loading === true) {
+    <p>Loading...</p>
+  }
+</section>

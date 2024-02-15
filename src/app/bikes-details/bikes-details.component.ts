@@ -1,45 +1,48 @@
-import { Component, DestroyRef, OnInit } from '@angular/core';
+import { Component, DestroyRef, Input, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { finalize } from 'rxjs';
 import { BikesService } from '../services/bikes/bikes.service';
 import { Bike } from '../services/bikes/bikes.typings';
 import { ViewHeaderComponent } from '../components/view-header/view-header.component';
-import { BikeCardComponent } from './bike-card/bike-card.component';
+import { BikeDataItemComponent } from './bike-data-item/bike-data-item.component';
 
 @Component({
-  selector: 'app-bikes-list',
+  selector: 'app-bikes-details',
   standalone: true,
-  imports: [ViewHeaderComponent, BikeCardComponent],
-  templateUrl: './bikes-list.component.html'
+  imports: [ViewHeaderComponent, BikeDataItemComponent],
+  templateUrl: './bikes-details.component.html'
 })
-export class BikesListComponent implements OnInit {
+export class BikesDetailsComponent implements OnInit {
   loading = true;
-  bikes: Bike[] = [];
+  bike!: Bike;
+
+  @Input() id!: number;
 
   constructor(
     private bikesService: BikesService,
-    private destroyRef: DestroyRef
+    private destroyRef: DestroyRef,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
-    this.getBikes();
-  }
-
-  private getBikes() {
     this.bikesService
-      .getBikes()
+      .getBike(this.id)
       .pipe(
         finalize(() => (this.loading = false)),
-        takeUntilDestroyed(this.destroyRef) // operator in dev preview, too tempting to not to give it a go in a pet project
+        takeUntilDestroyed(this.destroyRef)
       )
       .subscribe({
-        next: bikes => {
-          this.bikes = bikes;
+        next: bike => {
+          this.bike = bike;
         },
         error: error => {
-          this.bikes = [];
           console.error(JSON.stringify(error));
         }
       });
+  }
+
+  goBack() {
+    this.location.back();
   }
 }
