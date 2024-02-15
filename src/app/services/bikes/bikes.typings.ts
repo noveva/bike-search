@@ -1,7 +1,7 @@
 type BikeStatus = 'with owner' | 'stolen';
 
 export interface Bike {
-  id: string;
+  id: number;
   title: string;
   status: BikeStatus;
   serial: string;

@@ -3,18 +3,17 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { BikesService } from '../services/bikes/bikes.service';
 import { Bike } from '../services/bikes/bikes.typings';
 import { ViewHeaderComponent } from '../components/view-header/view-header.component';
+import { BikeCardComponent } from './bike-card/bike-card.component';
 
 @Component({
   selector: 'app-bikes-list',
   standalone: true,
-  imports: [ViewHeaderComponent],
-  templateUrl: './bikes-list.component.html',
-  styleUrl: './bikes-list.component.scss'
+  imports: [ViewHeaderComponent, BikeCardComponent],
+  templateUrl: './bikes-list.component.html'
 })
 export class BikesListComponent implements OnInit {
   loading = true;
   bikes: Bike[] = [];
-  bikeThumbFallback = '/assets/bike_placeholder.svg';
 
   constructor(
     private bikesService: BikesService,
