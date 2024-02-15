@@ -1,0 +1,16 @@
+@if (loading === false) {
+  @if (bikes && bikes.length > 0) {
+    <section>
+      <h1>Bikes overview</h1>
+      @for (bike of bikes; track bike.id) {
+        <article>
+          <h2>{{ bike.title }}</h2>
+        </article>
+      }
+    </section>
+  } @else {
+    <p>NO BIKES</p>
+  }
+} @else {
+  <p>LOADING</p>
+}
