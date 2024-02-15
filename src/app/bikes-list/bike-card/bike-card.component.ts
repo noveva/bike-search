@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-bike-card',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './bike-card.component.html',
   styleUrl: './bike-card.component.scss'
 })
