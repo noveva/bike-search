@@ -1,6 +1,7 @@
 import { Component, DestroyRef, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { finalize } from 'rxjs';
 import { BikesService } from '../services/bikes/bikes.service';
 import { Bike } from '../services/bikes/bikes.typings';
 import { ViewHeaderComponent } from '../components/view-header/view-header.component';
@@ -27,16 +28,16 @@ export class BikesDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.bikesService
       .getBike(this.id)
-      .pipe(takeUntilDestroyed(this.destroyRef))
+      .pipe(
+        finalize(() => (this.loading = false)),
+        takeUntilDestroyed(this.destroyRef)
+      )
       .subscribe({
         next: bike => {
           this.bike = bike;
         },
-        error: () => {
-          //do smt
-        },
-        complete: () => {
-          this.loading = false;
+        error: error => {
+          console.error(JSON.stringify(error));
         }
       });
   }
