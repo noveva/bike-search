@@ -1,8 +1,9 @@
 import { Component, DestroyRef, Input, OnInit } from '@angular/core';
-import { BikesService } from '../services/bikes/bikes.service';
+import { Location } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ViewHeaderComponent } from '../components/view-header/view-header.component';
+import { BikesService } from '../services/bikes/bikes.service';
 import { Bike } from '../services/bikes/bikes.typings';
+import { ViewHeaderComponent } from '../components/view-header/view-header.component';
 import { BikeDataItemComponent } from './bike-data-item/bike-data-item.component';
 
 @Component({
@@ -19,7 +20,8 @@ export class BikesDetailsComponent implements OnInit {
 
   constructor(
     private bikesService: BikesService,
-    private destroyRef: DestroyRef
+    private destroyRef: DestroyRef,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -37,5 +39,9 @@ export class BikesDetailsComponent implements OnInit {
           this.loading = false;
         }
       });
+  }
+
+  goBack() {
+    this.location.back();
   }
 }
