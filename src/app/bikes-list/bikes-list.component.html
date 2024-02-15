@@ -1,7 +1,7 @@
 @if (loading === false) {
   @if (bikes && bikes.length > 0) {
     <section>
-      <h1>Bikes overview</h1>
+      <app-view-header text="Bikes"></app-view-header>
       @for (bike of bikes; track bike.id) {
         <article>
           <h2>{{ bike.title }}</h2>

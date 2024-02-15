@@ -2,11 +2,12 @@ import { Component, DestroyRef, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { BikesService } from '../services/bikes/bikes.service';
 import { Bike } from '../services/bikes/bikes.typings';
+import { ViewHeaderComponent } from '../components/view-header/view-header.component';
 
 @Component({
   selector: 'app-bikes-list',
   standalone: true,
-  imports: [],
+  imports: [ViewHeaderComponent],
   templateUrl: './bikes-list.component.html',
   styleUrl: './bikes-list.component.scss'
 })
