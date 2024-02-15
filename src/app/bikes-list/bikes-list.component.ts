@@ -14,6 +14,7 @@ import { ViewHeaderComponent } from '../components/view-header/view-header.compo
 export class BikesListComponent implements OnInit {
   loading = true;
   bikes: Bike[] = [];
+  bikeThumbFallback = '/assets/bike_placeholder.svg';
 
   constructor(
     private bikesService: BikesService,

@@ -7,6 +7,6 @@ export interface Bike {
   serial: string;
   manufacturer_name: string;
   frame_colors: string[];
-  thumbnail: string;
+  thumb: string;
   large_img: string;
 }

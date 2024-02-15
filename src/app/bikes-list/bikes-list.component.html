@@ -2,11 +2,22 @@
   @if (bikes && bikes.length > 0) {
     <section>
       <app-view-header text="Bikes"></app-view-header>
-      @for (bike of bikes; track bike.id) {
-        <article>
-          <h2>{{ bike.title }}</h2>
-        </article>
-      }
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        @for (bike of bikes; track bike.id) {
+          <article class="flex flex-col p-2 md:p-4 rounded-lg bg-grey">
+            <img
+              [src]="bike.thumb || bikeThumbFallback"
+              [alt]="bike.title"
+              [class]="{
+                'h-80': true,
+                'w-auto': true,
+                'object-contain': true,
+                'thumb-default': !bike.thumb
+              }" />
+            <h2 class="pt-2 md:pt-4">{{ bike.title }}</h2>
+          </article>
+        }
+      </div>
     </section>
   } @else {
     <p>NO BIKES</p>
