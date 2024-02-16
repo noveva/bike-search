@@ -2,8 +2,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   DestroyRef,
+  ElementRef,
   Input,
-  OnInit
+  OnInit,
+  ViewChild
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -29,6 +31,7 @@ export class BikeSearchComponent implements OnInit {
       this.form.enable();
     }
   }
+  @ViewChild('input') input!: ElementRef;
 
   constructor(
     private route: ActivatedRoute,
@@ -44,7 +47,12 @@ export class BikeSearchComponent implements OnInit {
     });
   }
 
-  submitQuery() {
+  public reset() {
+    this.form.controls.query.reset();
+    this.input.nativeElement.focus();
+  }
+
+  public submitQuery() {
     const query = this.form.value.query;
     const queryParams = query && query.length > 0 ? { query } : {};
     this.router.navigate(['/'], {
