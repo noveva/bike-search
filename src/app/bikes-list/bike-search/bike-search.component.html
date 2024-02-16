@@ -1,7 +1,14 @@
 <form [formGroup]="form" (ngSubmit)="submitQuery()">
   <label for="query">Search:</label>
   <input id="query" placeholder="e.g. ebike" formControlName="query" />
-  <button type="submit" class="px-2 py-1 rounded-md bg-primary text-white">
-    Search
+  <button
+    class="px-2 py-1 rounded-md bg-primary text-white"
+    type="submit"
+    [disabled]="formDisabled">
+    @if (formDisabled) {
+      Searching...
+    } @else {
+      Search
+    }
   </button>
 </form>

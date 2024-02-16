@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   DestroyRef,
+  Input,
   OnInit
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -18,6 +19,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class BikeSearchComponent implements OnInit {
   form = new FormGroup({ query: new FormControl('') });
+  formDisabled: boolean = false;
+
+  @Input() set disabled(disabledValue: boolean) {
+    this.formDisabled = disabledValue;
+    if (disabledValue) {
+      this.form.disable();
+    } else {
+      this.form.enable();
+    }
+  }
 
   constructor(
     private route: ActivatedRoute,

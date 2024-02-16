@@ -31,6 +31,7 @@ export class BikesListComponent implements OnInit {
   }
 
   getBikes() {
+    this.loading = true;
     const query = this.route.snapshot.queryParamMap.get('query');
     this.bikesService
       .getBikes(query)
