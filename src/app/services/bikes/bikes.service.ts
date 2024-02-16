@@ -9,11 +9,11 @@ import { Bike } from './bikes.typings';
 export class BikesService {
   constructor(private http: HttpClient) {}
 
-  getBikes(query?: string, limit = 24): Observable<Bike[]> {
+  getBikes(query?: string | null, limit = 24): Observable<Bike[]> {
     const options = { params: new HttpParams().set('per_page', limit) };
 
     if (query) {
-      options.params.set('query', query);
+      options.params = options.params.set('query', query);
     }
 
     return this.http
