@@ -1,27 +1,26 @@
-# SwapfietsBikeSearch
+# Bike Search
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.3.
+This app revolves around bikes that users submitted via `https://bikeindex.org/`.
 
-## Development server
+It has only two views.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+First view lets you see a list of bikes. :bike: :bike: :bike: You can search the list, to do so use the search bar in the top right corner above the list.
 
-## Code scaffolding
+Second view is the bike details view. :bike: :mag: To get there you have to click on the "See details" button on any bike in the list. Navigating back will keep the list filtered by search term.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Running the project
 
-## Build
+1. Run `npm ci` to install all npm packages needed to run the project.
+2. Run `npm start` to start the dev server.
+3. Navigate to `http://localhost:4200/`.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Things to improve
 
-## Running unit tests
+Nothing is ever perfect and time is limited. So here we go, a list of things that should/could be improved:
+* add the functionality to load more bikes (API allows for pagination if willing to make an extra call or just a simple button at the bottom of the list would suffice)
+* on the bike detail page: fix content jump (waiting for image or adding a placeholder and fixing img size)
+* search bar will be scrolled out the viewport if user goes to the bottom of the list (sticky search bar or "jump up" button would fix it)
+* search bar could be initially hidden as an icon and expand on click 
+* search bar should have an input length validation and show an error message on its violation
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+And many more tiny details could be polished :nail_care:
