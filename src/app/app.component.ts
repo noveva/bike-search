@@ -13,7 +13,6 @@ import { BikesDetailsComponent } from './bikes-details/bikes-details.component';
     BikesListComponent,
     BikesDetailsComponent
   ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  templateUrl: './app.component.html'
 })
 export class AppComponent {}

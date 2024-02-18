@@ -1,5 +1,8 @@
 <section>
-  <app-view-header text="Bikes"></app-view-header>
+  <header class="flex flex-col sm:flex-row sm:items-center justify-between">
+    <app-view-header text="Bikes"></app-view-header>
+    <app-bike-search [disabled]="loading"></app-bike-search>
+  </header>
   @if (loading === false) {
     @if (bikes && bikes.length > 0) {
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

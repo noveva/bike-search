@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -6,10 +6,11 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [RouterModule],
   templateUrl: './bike-card.component.html',
-  styleUrl: './bike-card.component.scss'
+  styleUrl: './bike-card.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BikeCardComponent {
-  thumbFallback = '/assets/bike_placeholder.svg';
+  public thumbFallback = '/assets/bike_placeholder.svg';
   @Input() id!: number;
   @Input() title!: string;
   @Input() thumb!: string;

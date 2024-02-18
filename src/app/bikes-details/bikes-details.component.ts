@@ -14,8 +14,8 @@ import { BikeDataItemComponent } from './bike-data-item/bike-data-item.component
   templateUrl: './bikes-details.component.html'
 })
 export class BikesDetailsComponent implements OnInit {
-  loading = true;
-  bike!: Bike;
+  public loading = true;
+  public bike!: Bike;
 
   @Input() id!: number;
 
@@ -42,7 +42,7 @@ export class BikesDetailsComponent implements OnInit {
       });
   }
 
-  goBack() {
+  public goBack() {
     this.location.back();
   }
 }

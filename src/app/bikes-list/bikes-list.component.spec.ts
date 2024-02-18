@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BikesListComponent } from './bikes-list.component';
 import { BikesService } from '../services/bikes/bikes.service';
 import { of } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 describe('BikesListComponent', () => {
   let component: BikesListComponent;
@@ -12,10 +13,19 @@ describe('BikesListComponent', () => {
     const BikeServiceStub = {
       getBikes: () => of([])
     };
+    const ActivatedRouteStub = {
+      queryParams: of([{ id: 1 }])
+    };
 
     await TestBed.configureTestingModule({
       imports: [BikesListComponent],
-      providers: [{ provide: BikesService, useValue: BikeServiceStub }]
+      providers: [
+        { provide: BikesService, useValue: BikeServiceStub },
+        {
+          provide: ActivatedRoute,
+          useValue: ActivatedRouteStub
+        }
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(BikesListComponent);
