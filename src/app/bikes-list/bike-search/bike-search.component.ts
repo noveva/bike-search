@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,7 +15,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-bike-search',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './bike-search.component.html',
   styleUrl: './bike-search.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

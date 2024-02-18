@@ -1,12 +1,29 @@
-<form [formGroup]="form" (ngSubmit)="submitQuery()">
-  <label for="query">Search:</label>
-  <input #input id="query" placeholder="e.g. ebike" formControlName="query" />
-  <button type="button" (click)="reset()">
-    <span aria-hidden="true">&#10005;</span>
-    <span class="sr-only">Reset search</span>
-  </button>
+<form class="mb-6 sm:mb-0" [formGroup]="form" (ngSubmit)="submitQuery()">
+  <div
+    class="inline-block focus-within:shadow-lg p-2 border rounded rounded-r-none border-primary border-top">
+    <label for="query" class="sr-only">Search for:</label>
+    <input
+      type="text"
+      #input
+      id="query"
+      class="border-transparent focus-visible:outline-none autofill:bg-white"
+      placeholder="e.g. ebike"
+      formControlName="query" />
+    <button
+      type="button"
+      class="text-primary"
+      [ngClass]="
+        form.value && form.value.query && form.value.query.length > 0
+          ? 'visible'
+          : 'invisible'
+      "
+      (click)="reset()">
+      <span aria-hidden="true">&#10005;</span>
+      <span class="sr-only">Reset search</span>
+    </button>
+  </div>
   <button
-    class="px-2 py-1 rounded-md bg-primary text-white"
+    class="p-2 border rounded-l-none border-primary rounded-md bg-primary text-white"
     type="submit"
     [disabled]="formDisabled">
     @if (formDisabled) {
