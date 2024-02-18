@@ -6,7 +6,7 @@ import { Bike } from '../services/bikes/bikes.typings';
 import { ViewHeaderComponent } from '../components/view-header/view-header.component';
 import { BikeCardComponent } from './bike-card/bike-card.component';
 import { BikeSearchComponent } from './bike-search/bike-search.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-bikes-list',
@@ -15,8 +15,8 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './bikes-list.component.html'
 })
 export class BikesListComponent implements OnInit {
-  loading = true;
-  bikes: Bike[] = [];
+  public loading = true;
+  public bikes: Bike[] = [];
 
   constructor(
     private bikesService: BikesService,
@@ -26,13 +26,13 @@ export class BikesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
-      next: () => this.getBikes()
+      next: params => this.getBikes(params)
     });
   }
 
-  getBikes() {
+  private getBikes(params: Params) {
     this.loading = true;
-    const query = this.route.snapshot.queryParamMap.get('query');
+    const query = params['query'];
     this.bikesService
       .getBikes(query)
       .pipe(

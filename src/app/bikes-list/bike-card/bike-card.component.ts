@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BikeCardComponent {
-  thumbFallback = '/assets/bike_placeholder.svg';
+  public thumbFallback = '/assets/bike_placeholder.svg';
   @Input() id!: number;
   @Input() title!: string;
   @Input() thumb!: string;

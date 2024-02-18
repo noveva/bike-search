@@ -17,12 +17,11 @@ import { ActivatedRoute, Router } from '@angular/router';
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './bike-search.component.html',
-  styleUrl: './bike-search.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BikeSearchComponent implements OnInit {
-  form = new FormGroup({ query: new FormControl('') });
-  formDisabled: boolean = false;
+  public form = new FormGroup({ query: new FormControl('') });
+  public formDisabled: boolean = false;
 
   @Input() set disabled(disabledValue: boolean) {
     this.formDisabled = disabledValue;
